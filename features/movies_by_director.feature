@@ -32,3 +32,19 @@ Scenario: can't find similar movies if we don't know director (sad path)
   When  I follow "Find Movies With Same Director"
   Then  I should be on the home page
   And   I should see "'Alien' has no director info"
+
+Scenario: add movie
+  Given I am on the RottenPotatoes home page
+  And  I follow "Add new movie"
+  Then I should be on the new movie page
+  When I fill in "Title" with "John Wick"
+  And I select "R" from "Rating"
+  And I press "Save Changes"
+  Then I should be on the RottenPotatoes home page
+  And I should see "John Wick  was successfully created."
+
+Scenario: delete movie
+  Given I am on the details page for "Blade Runner"
+  And  I follow "Delete"
+  Then  I should be on the RottenPotatoes home page 
+  And   I should see "Movie 'Blade Runner' deleted."
